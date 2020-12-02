@@ -1,5 +1,5 @@
 -- DATABASE
--- create database eplat;
+create database eplat;
 
 use eplat;
 -- 用户表
@@ -17,8 +17,8 @@ create table t_user
     brith                 varchar(10) comment '出生日期',
     real_flg              tinyint(4) comment '实名认证标识',
     real_name_id          integer(10) comment '实名认证ID',
-    sing_data             timestamp(13) comment '注册时间',
-    last_login_time       timestamp(13) comment '上次登录时间'
+    sing_data             timestamp comment '注册时间',
+    last_login_time       timestamp comment '上次登录时间'
 );
 alter table t_user
     comment '用户表';
