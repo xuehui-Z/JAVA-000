@@ -1,24 +1,24 @@
-package com.jeekbang.jdbc;
+package work1;
 
 import com.zaxxer.hikari.HikariDataSource;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import javax.sql.DataSource;
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
 
 
 /**
  * 配置 Hikari 连接池
  */
-public class MyDataSql {
+public class InsertDataToDB {
     static final String dbDriver = "com.mysql.jdbc.Driver";
     static final String url = "jdbc:mysql://localhost:3306/eplat?rewriteBatchedStatements=true";
     static final String username = "july";
     static final String password = "!QAZ2wsx";
 
-
+    /**
+     * hikari连接池
+     * @return
+     */
     public static DataSource hikariDataSource() {
         HikariDataSource hikariDataSource = new HikariDataSource();
         hikariDataSource.setDriverClassName(dbDriver);
@@ -48,6 +48,7 @@ public class MyDataSql {
      * @param count
      */
     private static void createBigOrderData(Connection conn, int count) {
+        System.out.println("开始插入数据...");
         String sql = "insert into t_order(id,user_id,addr_id,goods_id,unit_price,quantity,amount,actice_id,snapshot_id,real_price,real_amount)" +
                 " values(?,?,?,?,?,?,?,?,?,?,?)";
         try {
