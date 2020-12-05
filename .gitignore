@@ -5,12 +5,6 @@ target/
 *.tar
 *.tar.gz
 
-# eclipse ignore
-.settings/
-.project
-.classpath
-.springBeans
-
 # IntelliJ ignore
 *.iml
 *.ipr
