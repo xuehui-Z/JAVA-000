@@ -4,6 +4,7 @@ import com.zaxxer.hikari.HikariDataSource;
 
 import javax.sql.DataSource;
 import java.sql.*;
+import java.util.UUID;
 
 
 /**
@@ -59,7 +60,7 @@ public class InsertDataToDB {
                     float unitPrice = (float) (Math.random() * (1000 + 1));
                     int quantity = (int) (Math.random() * (100 + 1));
                     float amount = unitPrice * quantity;
-                    pst.setInt(1,++i);
+                    pst.setString(1, UUID.randomUUID().toString());
                     pst.setInt(2, (int)( Math.random () * 4 )+1);
                     pst.setInt(3, (int)( Math.random () * (100000 + 1) ));
                     pst.setInt(4, (int)( Math.random () * (100000 + 1) ));
@@ -71,6 +72,7 @@ public class InsertDataToDB {
                     pst.setFloat(10, unitPrice);
                     pst.setFloat(11, amount);
                     pst.addBatch();
+                    i++;
                 }
                 pst.executeBatch();
             }
