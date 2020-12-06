@@ -1,16 +1,14 @@
 package com.example.readwriteseparationv1.service;
 
-import com.example.readwriteseparationv1.domain.DUser;
+import com.example.readwriteseparationv1.domain.TUser;
 import com.example.readwriteseparationv1.exception.ServiceException;
 import com.example.readwriteseparationv1.repository.DynamicUserRepository;
 import com.example.readwriteseparationv1.utils.ResultCode;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.annotation.Resource;
 import java.math.BigInteger;
 
 @Service
@@ -21,8 +19,8 @@ public class DynamicUserService {
     protected DynamicUserRepository dynamicUserRepository;
 
     @Transactional(readOnly=true)
-    public DUser editPrimary(BigInteger id) {
-        DUser user=null;
+    public TUser editPrimary(int id) {
+        TUser user=null;
         try {
             user=dynamicUserRepository.findById(id).get();
         }catch (Exception e) {
@@ -36,8 +34,8 @@ public class DynamicUserService {
     }
     @Transactional(readOnly=true)
 //    @Transactional(propagation = Propagation.REQUIRES_NEW)，
-    public DUser editSecond(BigInteger id) {
-        DUser user=null;
+    public TUser editSecond(int id) {
+        TUser user=null;
         try {
             user=dynamicUserRepository.findById(id).get();
         }catch (Exception e) {
@@ -49,7 +47,7 @@ public class DynamicUserService {
         return user;
 
     }
-    public BigInteger delete(BigInteger id) {
+    public int delete(int id) {
         try {
             dynamicUserRepository.deleteById(id);
         }catch (Exception e) {

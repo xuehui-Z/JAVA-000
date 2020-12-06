@@ -8,7 +8,7 @@
         <version>2.4.0</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.example</groupId>
+    <groupId>com.geekbang.java</groupId>
     <artifactId>read-write-separation-v2</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>read-write-separation-v2</name>

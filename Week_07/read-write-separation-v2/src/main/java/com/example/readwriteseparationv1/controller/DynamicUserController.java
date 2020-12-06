@@ -20,19 +20,18 @@ public class DynamicUserController {
     @Autowired
     private DynamicUserService dynamicUserService;
 
-    @GetMapping("/duser/eidt")
-    public ResultResponse edit(@RequestParam("id") BigInteger id) {
+    @GetMapping("/user/master")
+    public ResultResponse edit(@RequestParam("id") int id) {
         return ResultResponse.builderResponse(ResultCode.SUCCESS.getCode(),"编辑成功!",true,"",dynamicUserService.editPrimary(id));
 
     }
-    @GetMapping("/duser/eidts")
-    public ResultResponse eidtsecond(@RequestParam("id") BigInteger id) {
-        log.info("eidtsecond--->");
+    @GetMapping("/user/slave")
+    public ResultResponse eidtsecond(@RequestParam("id") int id) {
         return ResultResponse.builderResponse(ResultCode.SUCCESS.getCode(),"编辑成功!",true,"",dynamicUserService.editSecond(id));
 
     }
     @GetMapping("/user/delete")
-    public ResultResponse deleteById(@RequestParam("id") BigInteger id) {
+    public ResultResponse deleteById(@RequestParam("id") int id) {
 
         return ResultResponse.builderResponse(ResultCode.SUCCESS.getCode(),"删除成功!",true,"",dynamicUserService.delete(id));
 
