@@ -6,11 +6,10 @@ import javax.sql.DataSource;
 import java.sql.*;
 import java.util.UUID;
 
-
-/**
- * 配置 Hikari 连接池
- */
 public class InsertDataToDB {
+    /**
+     * 配置 Hikari 连接池
+     */
     static final String dbDriver = "com.mysql.jdbc.Driver";
     static final String url = "jdbc:mysql://localhost:3306/eplat?rewriteBatchedStatements=true";
     static final String username = "july";
