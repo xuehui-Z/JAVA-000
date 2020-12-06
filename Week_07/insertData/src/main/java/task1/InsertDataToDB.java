@@ -1,4 +1,4 @@
-package work1;
+package task1;
 
 import com.zaxxer.hikari.HikariDataSource;
 

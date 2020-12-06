@@ -23,10 +23,11 @@ public class DataSourceAop {
     @Before("piontcut(datasource)")
     public void beforeDs(JoinPoint joinPoint,DS datasource){
         String dataSourceName=datasource.value();
-        if(StrUtil.equals(dataSourceName,"read")){
+        if(StrUtil.equals(dataSourceName,"slave")){
+            // 随机从从库的"second","three"中选择一个
             dataSourceName=RandomRule.rule();
         }
-        System.out.println("dataSourceName-->"+dataSourceName);
+        System.out.println("dataSourceName-->"+ dataSourceName);
         MultiDataSource.setDataSourceKey(dataSourceName);
     }
 

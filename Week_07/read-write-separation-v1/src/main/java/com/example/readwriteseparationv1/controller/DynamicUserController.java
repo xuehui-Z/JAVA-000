@@ -23,17 +23,15 @@ public class DynamicUserController {
     @Autowired
     private DynamicUserService dynamicUserService;
 
-//    @PassToken
-    @GetMapping("/duser/eidt")
-//    @DS
-    public ResultResponse edit(@RequestParam("id") BigInteger id) {
+    @GetMapping("/user/getmaster")
+    @DS("primary")
+    public ResultResponse edit(@RequestParam("id") int id) {
         return ResultResponse.builderResponse(ResultCode.SUCCESS.getCode(),"编辑成功!",true,"",dynamicUserService.editPrimary(id));
 
     }
-    @GetMapping("/duser/eidts")
-//    @DS("second")
-    @DS("read")
-    public ResultResponse eidtsecond(@RequestParam("id") BigInteger id) {
+    @GetMapping("/user/getslave")
+    @DS("slave")
+    public ResultResponse eidtsecond(@RequestParam("id") int id) {
         log.info("eidtsecond--->");
         return ResultResponse.builderResponse(ResultCode.SUCCESS.getCode(),"编辑成功!",true,"",dynamicUserService.editSecond(id));
 
