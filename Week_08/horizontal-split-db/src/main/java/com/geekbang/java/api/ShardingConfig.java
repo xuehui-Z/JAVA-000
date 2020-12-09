@@ -1,6 +1,5 @@
-package com.geekbang.java.service.main;
+package com.geekbang.java.api;
 
-import com.geekbang.java.service.OrderDeamService;
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.apache.shardingsphere.driver.api.ShardingSphereDataSourceFactory;
 import org.apache.shardingsphere.infra.config.algorithm.ShardingSphereAlgorithmConfiguration;
@@ -9,18 +8,14 @@ import org.apache.shardingsphere.sharding.api.config.rule.ShardingTableRuleConfi
 import org.apache.shardingsphere.sharding.api.config.strategy.sharding.StandardShardingStrategyConfiguration;
 
 import javax.sql.DataSource;
-import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 
-public class ShardingMain {
-    public static void main(String[] args) throws IOException, SQLException {
+public class ShardingConfig {
+    public static DataSource shardingDataSource() throws SQLException {
         // 配置真实数据源
         Map<String, DataSource> dataSourceMap = new HashMap<>();
 
@@ -65,26 +60,7 @@ public class ShardingMain {
 
         // 创建 ShardingSphereDataSource
         DataSource dataSource = ShardingSphereDataSourceFactory.createDataSource(dataSourceMap, Collections.singleton(shardingRuleConfig), new Properties());
-        Connection conn = dataSource.getConnection();
 
-        String insertSql = "insert into t_order(id,user_id,order_id,addr_id,goods_id,unit_price,quantity,amount) " +
-                "values(?,?,?,?,?,?,?,?)";
-        PreparedStatement ps = conn.prepareStatement(insertSql);
-        ps.setInt(1, 3);
-        ps.setInt(2, 10);
-        ps.setInt(3, 10);
-        ps.setInt(4, 10);
-        ps.setInt(5, 10);
-        ps.setInt(6, 10);
-        ps.setInt(7, 10);
-        ps.setInt(8, 10);
-        ps.execute();
-
-        String selectSql = "select * from t_order";
-        PreparedStatement sps = conn.prepareStatement(selectSql);
-        ResultSet res = sps.executeQuery();
-        while(res.next()) {
-            System.out.println(res.toString());
-        }
+        return dataSource;
     }
 }
