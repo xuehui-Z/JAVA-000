@@ -15,7 +15,7 @@ dataSources:
 
 rules:
   # 配置分片规则
-  #- !SHARDING
+  # - !SHARDING
   tables:
     # 配置 t_order 表规则
     t_order:

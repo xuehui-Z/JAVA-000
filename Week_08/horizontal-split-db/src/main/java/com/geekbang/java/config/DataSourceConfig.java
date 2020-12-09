@@ -15,6 +15,10 @@ import java.sql.SQLException;
 public class DataSourceConfig {
     @Bean
     public DataSource shardingDataSource() throws IOException, SQLException {
-        return YamlShardingSphereDataSourceFactory.createDataSource(new File("classpath:sharding.yml"));
+        return YamlShardingSphereDataSourceFactory.createDataSource(getFile("sharding.yml"));
+    }
+
+    private File getFile(final String fileName) {
+        return new File(DataSourceConfig.class.getClassLoader().getResource(fileName).getPath());
     }
 }

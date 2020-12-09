@@ -2,137 +2,146 @@ CREATE DATABASE  IF NOT EXISTS  `ds1`  DEFAULT CHARACTER SET utf8mb4 COLLATE utf
 
 USE `ds1`;
 
-CREATE TABLE IF NOT EXISTS `t_order01`
+CREATE TABLE IF NOT EXISTS `t_order1`
 (
-    `id`          varchar(128) NOT NULL  comment '订单ID',
-    `user_id`     varchar(128) NOT NULL comment '用户ID',
-    `addr_id`     varchar(128) NOT NULL comment '收货地址',
-    `goods_id`    varchar(128) NOT NULL comment '商品ID',
+    `id`          int(12) NOT NULL  comment 'ID',
+    `order_id`    int(12) NOT NULL comment '订单ID',
+    `user_id`     int(12) NOT NULL comment '用户ID',
+    `addr_id`     int(12) NOT NULL comment '收货地址',
+    `goods_id`    int(12) NOT NULL comment '商品ID',
     `unit_price`  decimal(11, 2) NOT NULL comment '单价',
     `quantity`    int(10) NOT NULL comment '数量',
     `amount`      decimal(11, 2) NOT NULL comment '总金额',
-    `actice_id`   varchar(128) comment '活动ID',
+    `actice_id`   int(12) comment '活动ID',
     `real_price`  decimal(11, 2) comment '实际单价',
     `real_amount` decimal(11, 2) comment '实际总金额',
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `t_order02`
+CREATE TABLE IF NOT EXISTS `t_order2`
 (
-    `id`          varchar(128) NOT NULL  comment '订单ID',
-    `user_id`     varchar(128) NOT NULL comment '用户ID',
-    `addr_id`     varchar(128) NOT NULL comment '收货地址',
-    `goods_id`    varchar(128) NOT NULL comment '商品ID',
+    `id`          int(12) NOT NULL  comment 'ID',
+    `order_id`    int(12) NOT NULL comment '订单ID',
+    `user_id`     int(12) NOT NULL comment '用户ID',
+    `addr_id`     int(12) NOT NULL comment '收货地址',
+    `goods_id`    int(12) NOT NULL comment '商品ID',
     `unit_price`  decimal(11, 2) NOT NULL comment '单价',
     `quantity`    int(10) NOT NULL comment '数量',
     `amount`      decimal(11, 2) NOT NULL comment '总金额',
-    `actice_id`   varchar(128) comment '活动ID',
+    `actice_id`   int(12) comment '活动ID',
     `real_price`  decimal(11, 2) comment '实际单价',
     `real_amount` decimal(11, 2) comment '实际总金额',
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `t_order03`
+CREATE TABLE IF NOT EXISTS `t_order3`
 (
-    `id`          varchar(128) NOT NULL  comment '订单ID',
-    `user_id`     varchar(128) NOT NULL comment '用户ID',
-    `addr_id`     varchar(128) NOT NULL comment '收货地址',
-    `goods_id`    varchar(128) NOT NULL comment '商品ID',
+    `id`          int(12) NOT NULL  comment 'ID',
+    `order_id`    int(12) NOT NULL comment '订单ID',
+    `user_id`     int(12) NOT NULL comment '用户ID',
+    `addr_id`     int(12) NOT NULL comment '收货地址',
+    `goods_id`    int(12) NOT NULL comment '商品ID',
     `unit_price`  decimal(11, 2) NOT NULL comment '单价',
     `quantity`    int(10) NOT NULL comment '数量',
     `amount`      decimal(11, 2) NOT NULL comment '总金额',
-    `actice_id`   varchar(128) comment '活动ID',
+    `actice_id`   int(12) comment '活动ID',
     `real_price`  decimal(11, 2) comment '实际单价',
     `real_amount` decimal(11, 2) comment '实际总金额',
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 
-CREATE TABLE IF NOT EXISTS `t_order04`
+CREATE TABLE IF NOT EXISTS `t_order4`
 (
-    `id`          varchar(128) NOT NULL  comment '订单ID',
-    `user_id`     varchar(128) NOT NULL comment '用户ID',
-    `addr_id`     varchar(128) NOT NULL comment '收货地址',
-    `goods_id`    varchar(128) NOT NULL comment '商品ID',
+    `id`          int(12) NOT NULL  comment 'ID',
+    `order_id`    int(12) NOT NULL comment '订单ID',
+    `user_id`     int(12) NOT NULL comment '用户ID',
+    `addr_id`     int(12) NOT NULL comment '收货地址',
+    `goods_id`    int(12) NOT NULL comment '商品ID',
     `unit_price`  decimal(11, 2) NOT NULL comment '单价',
     `quantity`    int(10) NOT NULL comment '数量',
     `amount`      decimal(11, 2) NOT NULL comment '总金额',
-    `actice_id`   varchar(128) comment '活动ID',
+    `actice_id`   int(12) comment '活动ID',
     `real_price`  decimal(11, 2) comment '实际单价',
     `real_amount` decimal(11, 2) comment '实际总金额',
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `t_order05`
+CREATE TABLE IF NOT EXISTS `t_order5`
 (
-    `id`          varchar(128) NOT NULL  comment '订单ID',
-    `user_id`     varchar(128) NOT NULL comment '用户ID',
-    `addr_id`     varchar(128) NOT NULL comment '收货地址',
-    `goods_id`    varchar(128) NOT NULL comment '商品ID',
+    `id`          int(12) NOT NULL  comment 'ID',
+    `order_id`    int(12) NOT NULL comment '订单ID',
+    `user_id`     int(12) NOT NULL comment '用户ID',
+    `addr_id`     int(12) NOT NULL comment '收货地址',
+    `goods_id`    int(12) NOT NULL comment '商品ID',
     `unit_price`  decimal(11, 2) NOT NULL comment '单价',
     `quantity`    int(10) NOT NULL comment '数量',
     `amount`      decimal(11, 2) NOT NULL comment '总金额',
-    `actice_id`   varchar(128) comment '活动ID',
+    `actice_id`   int(12) comment '活动ID',
     `real_price`  decimal(11, 2) comment '实际单价',
     `real_amount` decimal(11, 2) comment '实际总金额',
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `t_order06`
+CREATE TABLE IF NOT EXISTS `t_order6`
 (
-    `id`          varchar(128) NOT NULL  comment '订单ID',
-    `user_id`     varchar(128) NOT NULL comment '用户ID',
-    `addr_id`     varchar(128) NOT NULL comment '收货地址',
-    `goods_id`    varchar(128) NOT NULL comment '商品ID',
+    `id`          int(12) NOT NULL  comment 'ID',
+    `order_id`    int(12) NOT NULL comment '订单ID',
+    `user_id`     int(12) NOT NULL comment '用户ID',
+    `addr_id`     int(12) NOT NULL comment '收货地址',
+    `goods_id`    int(12) NOT NULL comment '商品ID',
     `unit_price`  decimal(11, 2) NOT NULL comment '单价',
     `quantity`    int(10) NOT NULL comment '数量',
     `amount`      decimal(11, 2) NOT NULL comment '总金额',
-    `actice_id`   varchar(128) comment '活动ID',
+    `actice_id`   int(12) comment '活动ID',
     `real_price`  decimal(11, 2) comment '实际单价',
     `real_amount` decimal(11, 2) comment '实际总金额',
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `t_order07`
+CREATE TABLE IF NOT EXISTS `t_order7`
 (
-    `id`          varchar(128) NOT NULL  comment '订单ID',
-    `user_id`     varchar(128) NOT NULL comment '用户ID',
-    `addr_id`     varchar(128) NOT NULL comment '收货地址',
-    `goods_id`    varchar(128) NOT NULL comment '商品ID',
+    `id`          int(12) NOT NULL  comment 'ID',
+    `order_id`    int(12) NOT NULL comment '订单ID',
+    `user_id`     int(12) NOT NULL comment '用户ID',
+    `addr_id`     int(12) NOT NULL comment '收货地址',
+    `goods_id`    int(12) NOT NULL comment '商品ID',
     `unit_price`  decimal(11, 2) NOT NULL comment '单价',
     `quantity`    int(10) NOT NULL comment '数量',
     `amount`      decimal(11, 2) NOT NULL comment '总金额',
-    `actice_id`   varchar(128) comment '活动ID',
+    `actice_id`   int(12) comment '活动ID',
     `real_price`  decimal(11, 2) comment '实际单价',
     `real_amount` decimal(11, 2) comment '实际总金额',
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `t_order08`
+CREATE TABLE IF NOT EXISTS `t_order8`
 (
-    `id`          varchar(128) NOT NULL  comment '订单ID',
-    `user_id`     varchar(128) NOT NULL comment '用户ID',
-    `addr_id`     varchar(128) NOT NULL comment '收货地址',
-    `goods_id`    varchar(128) NOT NULL comment '商品ID',
+    `id`          int(12) NOT NULL  comment 'ID',
+    `order_id`    int(12) NOT NULL comment '订单ID',
+    `user_id`     int(12) NOT NULL comment '用户ID',
+    `addr_id`     int(12) NOT NULL comment '收货地址',
+    `goods_id`    int(12) NOT NULL comment '商品ID',
     `unit_price`  decimal(11, 2) NOT NULL comment '单价',
     `quantity`    int(10) NOT NULL comment '数量',
     `amount`      decimal(11, 2) NOT NULL comment '总金额',
-    `actice_id`   varchar(128) comment '活动ID',
+    `actice_id`   int(12) comment '活动ID',
     `real_price`  decimal(11, 2) comment '实际单价',
     `real_amount` decimal(11, 2) comment '实际总金额',
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-CREATE TABLE IF NOT EXISTS `t_order09`
+CREATE TABLE IF NOT EXISTS `t_order9`
 (
-    `id`          varchar(128) NOT NULL  comment '订单ID',
-    `user_id`     varchar(128) NOT NULL comment '用户ID',
-    `addr_id`     varchar(128) NOT NULL comment '收货地址',
-    `goods_id`    varchar(128) NOT NULL comment '商品ID',
+    `id`          int(12) NOT NULL  comment 'ID',
+    `order_id`    int(12) NOT NULL comment '订单ID',
+    `user_id`     int(12) NOT NULL comment '用户ID',
+    `addr_id`     int(12) NOT NULL comment '收货地址',
+    `goods_id`    int(12) NOT NULL comment '商品ID',
     `unit_price`  decimal(11, 2) NOT NULL comment '单价',
     `quantity`    int(10) NOT NULL comment '数量',
     `amount`      decimal(11, 2) NOT NULL comment '总金额',
-    `actice_id`   varchar(128) comment '活动ID',
+    `actice_id`   int(12) comment '活动ID',
     `real_price`  decimal(11, 2) comment '实际单价',
     `real_amount` decimal(11, 2) comment '实际总金额',
     PRIMARY KEY (`id`)
@@ -140,14 +149,15 @@ CREATE TABLE IF NOT EXISTS `t_order09`
 
 CREATE TABLE IF NOT EXISTS `t_order10`
 (
-    `id`          varchar(128) NOT NULL  comment '订单ID',
-    `user_id`     varchar(128) NOT NULL comment '用户ID',
-    `addr_id`     varchar(128) NOT NULL comment '收货地址',
-    `goods_id`    varchar(128) NOT NULL comment '商品ID',
+    `id`          int(12) NOT NULL  comment 'ID',
+    `order_id`    int(12) NOT NULL comment '订单ID',
+    `user_id`     int(12) NOT NULL comment '用户ID',
+    `addr_id`     int(12) NOT NULL comment '收货地址',
+    `goods_id`    int(12) NOT NULL comment '商品ID',
     `unit_price`  decimal(11, 2) NOT NULL comment '单价',
     `quantity`    int(10) NOT NULL comment '数量',
     `amount`      decimal(11, 2) NOT NULL comment '总金额',
-    `actice_id`   varchar(128) comment '活动ID',
+    `actice_id`   int(12) comment '活动ID',
     `real_price`  decimal(11, 2) comment '实际单价',
     `real_amount` decimal(11, 2) comment '实际总金额',
     PRIMARY KEY (`id`)
@@ -155,14 +165,15 @@ CREATE TABLE IF NOT EXISTS `t_order10`
 
 CREATE TABLE IF NOT EXISTS `t_order11`
 (
-    `id`          varchar(128) NOT NULL  comment '订单ID',
-    `user_id`     varchar(128) NOT NULL comment '用户ID',
-    `addr_id`     varchar(128) NOT NULL comment '收货地址',
-    `goods_id`    varchar(128) NOT NULL comment '商品ID',
+    `id`          int(12) NOT NULL  comment 'ID',
+    `order_id`    int(12) NOT NULL comment '订单ID',
+    `user_id`     int(12) NOT NULL comment '用户ID',
+    `addr_id`     int(12) NOT NULL comment '收货地址',
+    `goods_id`    int(12) NOT NULL comment '商品ID',
     `unit_price`  decimal(11, 2) NOT NULL comment '单价',
     `quantity`    int(10) NOT NULL comment '数量',
     `amount`      decimal(11, 2) NOT NULL comment '总金额',
-    `actice_id`   varchar(128) comment '活动ID',
+    `actice_id`   int(12) comment '活动ID',
     `real_price`  decimal(11, 2) comment '实际单价',
     `real_amount` decimal(11, 2) comment '实际总金额',
     PRIMARY KEY (`id`)
@@ -170,14 +181,15 @@ CREATE TABLE IF NOT EXISTS `t_order11`
 
 CREATE TABLE IF NOT EXISTS `t_order12`
 (
-    `id`          varchar(128) NOT NULL  comment '订单ID',
-    `user_id`     varchar(128) NOT NULL comment '用户ID',
-    `addr_id`     varchar(128) NOT NULL comment '收货地址',
-    `goods_id`    varchar(128) NOT NULL comment '商品ID',
+    `id`          int(12) NOT NULL  comment 'ID',
+    `order_id`    int(12) NOT NULL comment '订单ID',
+    `user_id`     int(12) NOT NULL comment '用户ID',
+    `addr_id`     int(12) NOT NULL comment '收货地址',
+    `goods_id`    int(12) NOT NULL comment '商品ID',
     `unit_price`  decimal(11, 2) NOT NULL comment '单价',
     `quantity`    int(10) NOT NULL comment '数量',
     `amount`      decimal(11, 2) NOT NULL comment '总金额',
-    `actice_id`   varchar(128) comment '活动ID',
+    `actice_id`   int(12) comment '活动ID',
     `real_price`  decimal(11, 2) comment '实际单价',
     `real_amount` decimal(11, 2) comment '实际总金额',
     PRIMARY KEY (`id`)
@@ -185,14 +197,15 @@ CREATE TABLE IF NOT EXISTS `t_order12`
 
 CREATE TABLE IF NOT EXISTS `t_order13`
 (
-    `id`          varchar(128) NOT NULL  comment '订单ID',
-    `user_id`     varchar(128) NOT NULL comment '用户ID',
-    `addr_id`     varchar(128) NOT NULL comment '收货地址',
-    `goods_id`    varchar(128) NOT NULL comment '商品ID',
+    `id`          int(12) NOT NULL  comment 'ID',
+    `order_id`    int(12) NOT NULL comment '订单ID',
+    `user_id`     int(12) NOT NULL comment '用户ID',
+    `addr_id`     int(12) NOT NULL comment '收货地址',
+    `goods_id`    int(12) NOT NULL comment '商品ID',
     `unit_price`  decimal(11, 2) NOT NULL comment '单价',
     `quantity`    int(10) NOT NULL comment '数量',
     `amount`      decimal(11, 2) NOT NULL comment '总金额',
-    `actice_id`   varchar(128) comment '活动ID',
+    `actice_id`   int(12) comment '活动ID',
     `real_price`  decimal(11, 2) comment '实际单价',
     `real_amount` decimal(11, 2) comment '实际总金额',
     PRIMARY KEY (`id`)
@@ -200,14 +213,15 @@ CREATE TABLE IF NOT EXISTS `t_order13`
 
 CREATE TABLE IF NOT EXISTS `t_order14`
 (
-    `id`          varchar(128) NOT NULL  comment '订单ID',
-    `user_id`     varchar(128) NOT NULL comment '用户ID',
-    `addr_id`     varchar(128) NOT NULL comment '收货地址',
-    `goods_id`    varchar(128) NOT NULL comment '商品ID',
+    `id`          int(12) NOT NULL  comment 'ID',
+    `order_id`    int(12) NOT NULL comment '订单ID',
+    `user_id`     int(12) NOT NULL comment '用户ID',
+    `addr_id`     int(12) NOT NULL comment '收货地址',
+    `goods_id`    int(12) NOT NULL comment '商品ID',
     `unit_price`  decimal(11, 2) NOT NULL comment '单价',
     `quantity`    int(10) NOT NULL comment '数量',
     `amount`      decimal(11, 2) NOT NULL comment '总金额',
-    `actice_id`   varchar(128) comment '活动ID',
+    `actice_id`   int(12) comment '活动ID',
     `real_price`  decimal(11, 2) comment '实际单价',
     `real_amount` decimal(11, 2) comment '实际总金额',
     PRIMARY KEY (`id`)
@@ -215,14 +229,15 @@ CREATE TABLE IF NOT EXISTS `t_order14`
 
 CREATE TABLE IF NOT EXISTS `t_order15`
 (
-    `id`          varchar(128) NOT NULL  comment '订单ID',
-    `user_id`     varchar(128) NOT NULL comment '用户ID',
-    `addr_id`     varchar(128) NOT NULL comment '收货地址',
-    `goods_id`    varchar(128) NOT NULL comment '商品ID',
+    `id`          int(12) NOT NULL  comment 'ID',
+    `order_id`    int(12) NOT NULL comment '订单ID',
+    `user_id`     int(12) NOT NULL comment '用户ID',
+    `addr_id`     int(12) NOT NULL comment '收货地址',
+    `goods_id`    int(12) NOT NULL comment '商品ID',
     `unit_price`  decimal(11, 2) NOT NULL comment '单价',
     `quantity`    int(10) NOT NULL comment '数量',
     `amount`      decimal(11, 2) NOT NULL comment '总金额',
-    `actice_id`   varchar(128) comment '活动ID',
+    `actice_id`   int(12) comment '活动ID',
     `real_price`  decimal(11, 2) comment '实际单价',
     `real_amount` decimal(11, 2) comment '实际总金额',
     PRIMARY KEY (`id`)
@@ -230,14 +245,15 @@ CREATE TABLE IF NOT EXISTS `t_order15`
 
 CREATE TABLE IF NOT EXISTS `t_order16`
 (
-    `id`          varchar(128) NOT NULL  comment '订单ID',
-    `user_id`     varchar(128) NOT NULL comment '用户ID',
-    `addr_id`     varchar(128) NOT NULL comment '收货地址',
-    `goods_id`    varchar(128) NOT NULL comment '商品ID',
+    `id`          int(12) NOT NULL  comment 'ID',
+    `order_id`    int(12) NOT NULL comment '订单ID',
+    `user_id`     int(12) NOT NULL comment '用户ID',
+    `addr_id`     int(12) NOT NULL comment '收货地址',
+    `goods_id`    int(12) NOT NULL comment '商品ID',
     `unit_price`  decimal(11, 2) NOT NULL comment '单价',
     `quantity`    int(10) NOT NULL comment '数量',
     `amount`      decimal(11, 2) NOT NULL comment '总金额',
-    `actice_id`   varchar(128) comment '活动ID',
+    `actice_id`   int(12) comment '活动ID',
     `real_price`  decimal(11, 2) comment '实际单价',
     `real_amount` decimal(11, 2) comment '实际总金额',
     PRIMARY KEY (`id`)
