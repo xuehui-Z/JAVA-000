@@ -29,7 +29,7 @@ public class InitDatabase{
     @SneakyThrows
     public static void init() {
         // 暂时写死URL
-        String jdbcUrl = "jdbc:mysql://localhost:3306";
+        String jdbcUrl = "jdbc:mysql://localhost:3306?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8&useSSL=false&allowPublicKeyRetrieval=true";
         Connection connection = DriverManager.getConnection(jdbcUrl, "root", "");
         execute(connection);
     }

@@ -22,7 +22,7 @@ public class ShardingConfig {
         // 配置第 1 个数据源
         BasicDataSource dataSource1 = new BasicDataSource();
         dataSource1.setDriverClassName("com.mysql.jdbc.Driver");
-        dataSource1.setUrl("jdbc:mysql://localhost:3306/ds0");
+        dataSource1.setUrl("jdbc:mysql://localhost:3306/ds0?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8&useSSL=false&allowPublicKeyRetrieval=true");
         dataSource1.setUsername("root");
         dataSource1.setPassword("");
         dataSourceMap.put("ds0", dataSource1);
@@ -30,7 +30,7 @@ public class ShardingConfig {
         // 配置第 2 个数据源
         BasicDataSource dataSource2 = new BasicDataSource();
         dataSource2.setDriverClassName("com.mysql.jdbc.Driver");
-        dataSource2.setUrl("jdbc:mysql://localhost:3306/ds1");
+        dataSource2.setUrl("jdbc:mysql://localhost:3306/ds1?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8&useSSL=false&allowPublicKeyRetrieval=true");
         dataSource2.setUsername("root");
         dataSource2.setPassword("");
         dataSourceMap.put("ds1", dataSource2);
@@ -58,8 +58,10 @@ public class ShardingConfig {
         tableShardingAlgorithmrProps.setProperty("algorithm-expression", "t_order${order_id % 16}");
         shardingRuleConfig.getShardingAlgorithms().put("tableShardingAlgorithm", new ShardingSphereAlgorithmConfiguration("INLINE", tableShardingAlgorithmrProps));
 
+        Properties properties = new Properties();
+        properties.setProperty("sql-show","true");
         // 创建 ShardingSphereDataSource
-        DataSource dataSource = ShardingSphereDataSourceFactory.createDataSource(dataSourceMap, Collections.singleton(shardingRuleConfig), new Properties());
+        DataSource dataSource = ShardingSphereDataSourceFactory.createDataSource(dataSourceMap, Collections.singleton(shardingRuleConfig), properties);
 
         return dataSource;
     }
