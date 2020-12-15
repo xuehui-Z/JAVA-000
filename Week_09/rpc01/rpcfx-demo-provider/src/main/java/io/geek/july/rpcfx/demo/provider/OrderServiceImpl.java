@@ -1,6 +1,6 @@
 package io.geek.july.rpcfx.demo.provider;
 
-import io.geek.july.rpcfx.demo.api.Order;
+import io.geek.july.rpcfx.demo.domain.Order;
 import io.geek.july.rpcfx.demo.api.OrderService;
 
 public class OrderServiceImpl implements OrderService {

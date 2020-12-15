@@ -2,8 +2,8 @@ package io.geek.july.rpcfx.demo.consumer;
 
 import io.geek.july.rpcfx.demo.api.OrderService;
 import io.geek.july.rpcfx.client.Rpcfx;
-import io.geek.july.rpcfx.demo.api.Order;
-import io.geek.july.rpcfx.demo.api.User;
+import io.geek.july.rpcfx.demo.domain.Order;
+import io.geek.july.rpcfx.demo.domain.User;
 import io.geek.july.rpcfx.demo.api.UserService;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 

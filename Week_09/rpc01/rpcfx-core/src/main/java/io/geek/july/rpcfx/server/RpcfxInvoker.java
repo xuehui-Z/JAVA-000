@@ -9,6 +9,7 @@ import io.geek.july.rpcfx.api.RpcfxResponse;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Arrays;
+import java.util.HashMap;
 
 public class RpcfxInvoker {
 
@@ -32,7 +33,7 @@ public class RpcfxInvoker {
             response.setResult(JSON.toJSONString(result, SerializerFeature.WriteClassName));
             response.setStatus(true);
             return response;
-        } catch ( IllegalAccessException | InvocationTargetException e) {
+        } catch (IllegalAccessException | InvocationTargetException e) {
 
             // 3.Xstream
 

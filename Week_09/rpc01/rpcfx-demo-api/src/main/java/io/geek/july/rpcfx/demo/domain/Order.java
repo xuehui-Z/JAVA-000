@@ -1,4 +1,4 @@
-package io.geek.july.rpcfx.demo.api;
+package io.geek.july.rpcfx.demo.domain;
 
 public class Order {
 

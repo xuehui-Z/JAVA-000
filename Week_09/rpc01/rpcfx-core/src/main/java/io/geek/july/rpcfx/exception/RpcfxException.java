@@ -4,6 +4,11 @@ public class RpcfxException extends Exception {
     private Integer errCode;
     private String errMsg;
 
+    public RpcfxException(int errCode,String errMsg) {
+        this.errCode = errCode;
+        this.errMsg = errMsg;
+    }
+
     public Integer getErrCode() {
         return errCode;
     }

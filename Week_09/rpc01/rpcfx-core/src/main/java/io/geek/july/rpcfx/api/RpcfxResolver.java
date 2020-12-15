@@ -1,7 +1,7 @@
 package io.geek.july.rpcfx.api;
 
-public interface RpcfxResolver {
+public interface RpcfxResolver<T> {
 
-    Object resolve(String serviceClass);
+    T resolve(String serviceClass);
 
 }
