@@ -5,17 +5,17 @@ import com.alibaba.fastjson.serializer.SerializerFeature;
 import io.geek.july.rpcfx.api.RpcfxRequest;
 import io.geek.july.rpcfx.api.RpcfxResolver;
 import io.geek.july.rpcfx.api.RpcfxResponse;
+import io.geek.july.rpcfx.exception.RpcfxException;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Arrays;
-import java.util.HashMap;
 
 public class RpcfxInvoker {
 
     private RpcfxResolver resolver;
 
-    public RpcfxInvoker(RpcfxResolver resolver){
+    public RpcfxInvoker(RpcfxResolver resolver) {
         this.resolver = resolver;
     }
 
@@ -31,6 +31,7 @@ public class RpcfxInvoker {
             Object result = method.invoke(service, request.getParams()); // dubbo, fastjson,
             // 两次json序列化能否合并成一个
             response.setResult(JSON.toJSONString(result, SerializerFeature.WriteClassName));
+//            response.setResult(result.toString());
             response.setStatus(true);
             return response;
         } catch (IllegalAccessException | InvocationTargetException e) {
@@ -40,7 +41,7 @@ public class RpcfxInvoker {
             // 2.封装一个统一的RpcfxException
             // 客户端也需要判断异常
             e.printStackTrace();
-            response.setException(e);
+            response.setException(new RpcfxException(-1, e.getMessage()));
             response.setStatus(false);
             return response;
         }

@@ -1,12 +1,14 @@
 package io.geek.july.rpcfx.api;
 
+import io.geek.july.rpcfx.exception.RpcfxException;
+
 public class RpcfxResponse {
 
     private Object result;
 
     private boolean status;
 
-    private Exception exception;
+    private RpcfxException exception;
 
     public Object getResult() {
         return result;
@@ -16,7 +18,7 @@ public class RpcfxResponse {
         this.result = result;
     }
 
-    public boolean isStatus() {
+    public boolean getStatus() {
         return status;
     }
 
@@ -24,11 +26,11 @@ public class RpcfxResponse {
         this.status = status;
     }
 
-    public Exception getException() {
+    public RpcfxException getException() {
         return exception;
     }
 
-    public void setException(Exception exception) {
+    public void setException(RpcfxException exception) {
         this.exception = exception;
     }
 }

@@ -17,14 +17,11 @@ public class RpcfxClientApplication {
 
 	public static void main(String[] args) {
 
-		// UserService service = new xxx();
-		// service.findById
-
-		UserService userService = Rpcfx.create(UserService.class, "http://localhost:8080/");
+		UserService userService = Rpcfx.create(UserService.class);
 		User user = userService.findById(1);
 		System.out.println("find user id=1 from server: " + user.getName());
 
-		OrderService orderService = Rpcfx.create(OrderService.class, "http://localhost:8080/");
+		OrderService orderService = Rpcfx.create(OrderService.class);
 		Order order = orderService.findOrderById(1992129);
 		System.out.println(String.format("find order name=%s, amount=%f",order.getName(),order.getAmount()));
 

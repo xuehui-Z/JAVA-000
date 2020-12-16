@@ -5,6 +5,7 @@ import io.geek.july.rpcfx.api.RpcfxResolver;
 import io.geek.july.rpcfx.api.RpcfxResponse;
 import io.geek.july.rpcfx.demo.api.OrderService;
 import io.geek.july.rpcfx.demo.api.UserService;
+import io.geek.july.rpcfx.demo.domain.User;
 import io.geek.july.rpcfx.server.RpcfxInvoker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;

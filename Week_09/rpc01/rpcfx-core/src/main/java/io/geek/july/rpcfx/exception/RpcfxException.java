@@ -1,6 +1,6 @@
 package io.geek.july.rpcfx.exception;
 
-public class RpcfxException extends Exception {
+public class RpcfxException extends RuntimeException {
     private Integer errCode;
     private String errMsg;
 
