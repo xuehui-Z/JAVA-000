@@ -22,7 +22,7 @@ public class RedisTemplateDemo {
     private RedisTemplate redisTemplate;
 
     public RedisTemplateDemo() {
-        this.redisTemplate = RedisUtil.redis;;
+        this.redisTemplate = RedisUtil.redis;
     }
 
     public void lock(String key, String value) {
@@ -49,7 +49,11 @@ public class RedisTemplateDemo {
     }
 
     private boolean tryLock(String key, String value, Integer timeout) {
-        Boolean result = redisTemplate.opsForValue().setIfAbsent(REDIS_LOCK + key, value, timeout, TimeUnit.SECONDS);
+//        Boolean result = redisTemplate.opsForValue().setIfAbsent(REDIS_LOCK + key, value, timeout, TimeUnit.SECONDS);
+        Boolean result = redisTemplate.opsForValue().setIfAbsent(REDIS_LOCK + key, value);
+        if (result) {
+            redisTemplate.expire(REDIS_LOCK + key, timeout, TimeUnit.SECONDS);
+        }
         return result != null && result;
     }
 

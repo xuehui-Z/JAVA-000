@@ -2,6 +2,8 @@ package io.geek.july.lock;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.serializer.GenericToStringSerializer;
+import org.springframework.data.redis.serializer.StringRedisSerializer;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
@@ -14,5 +16,7 @@ public class RedisUtil {
     @PostConstruct
     public void getRedisTemplate(){
         redis=this.redisTemplate;
+        redis.setValueSerializer(new GenericToStringSerializer(Object.class));
+        redis.setKeySerializer(new StringRedisSerializer());
     }
 }
