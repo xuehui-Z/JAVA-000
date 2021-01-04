@@ -3,6 +3,7 @@
 - 下载redis文件 https://github.com/tporadowski/redis/releases。  
   我这里是使用的GitHub上的开源版本，目前已经更新到5.0.10 for windows
 - 解压后即可使用
+- 配置环境变量，将Redis解压的目录配置到环境变量的Path里面（这一步可以不做）
 
 ### 配置主从（一主两从）
 - 主节点使用默认的配置，无需更改配置文件。
@@ -63,3 +64,106 @@ dir ./
   ````
 
 ### Redis哨兵（sentinel）
+- 跟上面操作一样，启动一主两从的Redis
+- 配置哨兵
+  - 编辑配置文件
+  ````
+  #sentinel26379.conf
+    port 26379
+    sentinel monitor mymaster 127.0.0.1 6381 2
+    sentinel down-after-milliseconds mymaster 10000
+  #sentinel26380.conf
+    port 26380
+    sentinel monitor mymaster 127.0.0.1 6381 2
+    sentinel down-after-milliseconds mymaster 10000
+  #sentinel26381.conf
+    port 26381
+    sentinel monitor mymaster 127.0.0.1 6381 2
+    sentinel down-after-milliseconds mymaster 10000
+  ````
+  ````
+  配置说明：
+  port:指定哨兵运行端口号。  
+  sentinel monitor <masterName> <ip> <port> <quorum>
+    masterName这个是对某个master+slave组合的一个区分标识（一套sentinel是可以监听多套master+slave这样的组合的）。
+    ip 和 port 就是master节点的 ip 和 端口号。
+    quorum这个参数是进行客观下线的一个依据，意思是至少有 quorum 个sentinel主观的认为这个master有故障，才会对这个master进行下线以及故障转移。因为有的时候，某个sentinel节点可能因为自身网络原因，导致无法连接master，而此时master并没有出现故障，所以这就需要多个sentinel都一致认为该master有问题，才可以进行下一步操作，这就保证了公平性和高可用。
+    那么，多个sentinel之间是如何达到共识的呢？
+    这就是依赖于前面说的第二个定时任务，某个sentinel先将master节点进行一个主观下线，然后会将这个判定通过sentinel is-master-down-by-addr这个命令问对应的节点是否也同样认为该addr的master节点要做客观下线。最后当达成这一共识的sentinel个数达到前面说的quorum设置的这个值时，就会对该master节点下线进行故障转移。quorum的值一般设置为sentinel个数的二分之一加1，例如3个sentinel就设置2。
+  sentinel down-after-milliseconds <masterName> <timeout>
+    masterName这个参数不用说了，跟上一的一样。
+    timeout是一个毫秒值，表示：如果这台sentinel超过timeout这个时间都无法连通master包括slave（slave不需要客观下线，因为不需要故障转移）的话，就会主观认为该master已经下线（实际下线需要客观下线的判断通过才会下线）
+  ````
+- 启动哨兵
+  ````
+  redis-server .\sentinel26379.conf --sentinel
+  redis-server .\sentinel26380.conf --sentinel
+  redis-server .\sentinel26381.conf --sentinel
+  ````
+- 查看主从关系
+  ````
+  localhost:6379> info Replication
+  # Replication
+  role:master
+  connected_slaves:2
+  slave0:ip=127.0.0.1,port=6380,state=online,offset=3194,lag=1
+  slave1:ip=127.0.0.1,port=6381,state=online,offset=3194,lag=1
+  master_replid:95f680d644973a4fafe223f65408e154188f77fd
+  master_replid2:0000000000000000000000000000000000000000
+  master_repl_offset:3194
+  second_repl_offset:-1
+  repl_backlog_active:1
+  repl_backlog_size:1048576
+  repl_backlog_first_byte_offset:1
+  repl_backlog_histlen:3194
+  ````
+- 关闭6379Redis服务，查看主从关系
+  ````
+  localhost:6380> info Replication
+  # Replication
+  role:slave
+  master_host:127.0.0.1
+  master_port:6381
+  master_link_status:up
+  master_last_io_seconds_ago:0
+  master_sync_in_progress:0
+  slave_repl_offset:8019
+  slave_priority:100
+  slave_read_only:1
+  connected_slaves:0
+  master_replid:89349eb6a353dce9ad8ca0f4ca77c564f9c4e1dd
+  master_replid2:95f680d644973a4fafe223f65408e154188f77fd
+  master_repl_offset:8019
+  second_repl_offset:6135
+  repl_backlog_active:1
+  repl_backlog_size:1048576
+  repl_backlog_first_byte_offset:1
+  repl_backlog_histlen:8019
+  ````
+  可以看到master已经变成了6381
+- 接下来再启动6379,并查看主从关系
+  ````
+  localhost:6379> info Replication
+  # Replication
+  role:slave
+  master_host:127.0.0.1
+  master_port:6381
+  master_link_status:up
+  master_last_io_seconds_ago:1
+  master_sync_in_progress:0
+  slave_repl_offset:17289
+  slave_priority:100
+  slave_read_only:1
+  connected_slaves:0
+  master_replid:89349eb6a353dce9ad8ca0f4ca77c564f9c4e1dd
+  master_replid2:0000000000000000000000000000000000000000
+  master_repl_offset:17289
+  second_repl_offset:-1
+  repl_backlog_active:1
+  repl_backlog_size:1048576
+  repl_backlog_first_byte_offset:14859
+  repl_backlog_histlen:2431
+  ````
+  可以看到6379已经成为了slave。
+  
+### Cluster 集群
