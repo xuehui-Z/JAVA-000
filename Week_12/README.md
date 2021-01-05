@@ -167,3 +167,79 @@ dir ./
   可以看到6379已经成为了slave。
   
 ### Cluster 集群
+- 配置开启节点
+  ````
+  #redis.windows.7000.conf
+  port 7000
+  daemonize yes
+  dir ./data
+  dbfilename redis.7000.data
+  cluster-enabled yes
+  cluster-config-file nodes-7000.conf
+  cluster-require-full-coverage no
+  ````
+  按照此格式配置复制两份出来，设置端口分别为7000，7001，7002  
+  启动Redis服务
+  ````
+   redis-server .\redis.windows.7000.conf
+   redis-server .\redis.windows.7001.conf
+   redis-server .\redis.windows.7002.conf
+  ````
+- meet
+  ````
+  redis-cli -p 7000 cluster meet 127.0.0.1 7001
+  redis-cli -p 7000 cluster meet 127.0.0.1 7002
+  ````
+  之后查看关系情况
+  ````
+    PS D:\work\Redis-x64-5.0.10> redis-cli -p 7001 cluster nodes # 通过7000端口运行的redis server查看cluster的节点信息，已经添加7001端口运行的redis server,且都为master节点
+    17d5a0c733f401e0c418c1dee4fe0165a5f41c72 127.0.0.1:7002@17002 master - 0 1609848794845 2 connected
+    763b76b1925682307b96bab81e34cc91ff11d098 127.0.0.1:7001@17001 myself,master - 0 1609848793000 0 connected
+    33c2e59b87ef465db08573072a556d7a98304644 127.0.0.1:7000@17000 master - 0 1609848795851 1 connected 0-4808
+    PS D:\work\Redis-x64-5.0.10> redis-cli -p 7002 cluster info  # 查看集群相关的信息
+    cluster_state:fail  # 集群状态为失败
+    cluster_slots_assigned:5146
+    cluster_slots_ok:0
+    cluster_slots_pfail:0
+    cluster_slots_fail:0
+    cluster_known_nodes:3  # 集群中有3个已知节点
+    cluster_size:1
+    cluster_current_epoch:2
+    cluster_my_epoch:2
+    cluster_stats_messages_ping_sent:2351
+    cluster_stats_messages_pong_sent:2363
+    cluster_stats_messages_sent:4714
+    cluster_stats_messages_ping_received:2363
+    cluster_stats_messages_pong_received:2351
+    cluster_stats_messages_received:4714  
+  ````
+- 指派槽
+  这里不借助工具，没有找到比较好的方法，windows上编写Bat脚本执行
+  ````
+  @echo off
+  for /l %%i in (%1,1,%2) do (
+  	redis-cli -p %3 cluster addslots %%i
+  	)
+  ````
+  接着执行脚本，会有点慢。。。
+  ````
+   .\test.bat 0 5500 7000
+   .\test.bat 5501 11000 7001 
+   .\test.bat 11001 16384 7002
+  ````
+  完成这一步，整个集群算是搭好了，执行set命令
+  ````
+  # 登录一个客户端
+  redis-cli -c -p 7000
+  127.0.0.1:7000> set hello world
+  OK
+  127.0.0.1:7000> get hello
+  "world"
+  127.0.0.1:7000> set kiki tt
+  -> Redirected to slot [10344] located at 127.0.0.1:7001
+  OK
+  127.0.0.1:7001> get kiki
+  "tt"
+  ````
+- 主从关系分配
+  再按照前面配置针对于每个节点配置主从服务器，达到高可用
