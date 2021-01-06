@@ -72,18 +72,21 @@ dir ./
     port 26379
     sentinel monitor mymaster 127.0.0.1 6381 2
     sentinel down-after-milliseconds mymaster 10000
+    sentinel parallel-syncs mymaster 1
   #sentinel26380.conf
     port 26380
     sentinel monitor mymaster 127.0.0.1 6381 2
     sentinel down-after-milliseconds mymaster 10000
+    sentinel parallel-syncs mymaster 1
   #sentinel26381.conf
     port 26381
     sentinel monitor mymaster 127.0.0.1 6381 2
     sentinel down-after-milliseconds mymaster 10000
+    sentinel parallel-syncs mymaster 1
   ````
   ````
   配置说明：
-  port:指定哨兵运行端口号。  
+  port:指定哨兵运行端口号。默认会生成2+redisport的端口
   sentinel monitor <masterName> <ip> <port> <quorum>
     masterName这个是对某个master+slave组合的一个区分标识（一套sentinel是可以监听多套master+slave这样的组合的）。
     ip 和 port 就是master节点的 ip 和 端口号。
@@ -93,6 +96,8 @@ dir ./
   sentinel down-after-milliseconds <masterName> <timeout>
     masterName这个参数不用说了，跟上一的一样。
     timeout是一个毫秒值，表示：如果这台sentinel超过timeout这个时间都无法连通master包括slave（slave不需要客观下线，因为不需要故障转移）的话，就会主观认为该master已经下线（实际下线需要客观下线的判断通过才会下线）
+  sentinel parallel-syncs <masterName> 1
+    当在执行故障转移时，设置几个slave同时进行切换master，该值越大，则可能就有越多的slave在切换master时不可用，可以将该值设置为1，即一个一个来，这样在某个slave进行切换master同步数据时，其余的slave还能正常工作，以此保证每次只有一个从服务器处于不能处理命令请求的状态。
   ````
 - 启动哨兵
   ````
