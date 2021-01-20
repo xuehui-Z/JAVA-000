@@ -3,7 +3,7 @@ package io.kimmking.kmq.core;
 public class KmqConsumer<T> {
 
     private final KmqBroker broker;
-
+    private int atIndex;
     private Kmq kmq;
 
     public KmqConsumer(KmqBroker broker) {
@@ -15,8 +15,13 @@ public class KmqConsumer<T> {
         if (null == kmq) throw new RuntimeException("Topic[" + topic + "] doesn't exist.");
     }
 
-    public KmqMessage<T> poll(long timeout) {
-        return kmq.poll(timeout);
+    public KmqMessage<T> poll(long timeout) throws InterruptedException {
+        KmqMessage message = kmq.poll(timeout,atIndex);
+        if (message != null) {
+            System.out.printf("消费完成:" + message.toString());
+            atIndex++;
+        }
+        return message;
     }
 
 }

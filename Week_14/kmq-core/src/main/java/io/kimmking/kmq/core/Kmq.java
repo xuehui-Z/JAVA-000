@@ -7,29 +7,40 @@ import java.util.concurrent.TimeUnit;
 
 public final class Kmq {
 
-    public Kmq(String topic, int capacity) {
-        this.topic = topic;
-        this.capacity = capacity;
-        this.queue = new LinkedBlockingQueue(capacity);
-    }
-
     private String topic;
 
     private int capacity;
 
-    private LinkedBlockingQueue<KmqMessage> queue;
+    private KmqMessage[] queue;
 
-    public boolean send(KmqMessage message) {
-        return queue.offer(message);
+    private int atIndex;
+
+    public Kmq(String topic, int capacity) {
+        this.topic = topic;
+        this.capacity = capacity;
+        this.queue = new KmqMessage[capacity];
     }
 
-    public KmqMessage poll() {
-        return queue.poll();
+    public boolean send(KmqMessage message,int index) {
+        if (index < capacity && index >= 0 && queue[index] == null) {
+            queue[index] = message;
+            atIndex = index;
+            return true;
+        } else return false;
     }
 
-    @SneakyThrows
-    public KmqMessage poll(long timeout) {
-        return queue.poll(timeout, TimeUnit.MILLISECONDS);
+    public KmqMessage poll(long timeout, int index) throws InterruptedException {
+        Thread.sleep(timeout);
+        if (index < atIndex && index >= 0) {
+            return queue[index];
+        } else {
+            return null;
+        }
     }
+
+//    @SneakyThrows
+//    public KmqMessage poll(long timeout) {
+//        return queue.poll(timeout, TimeUnit.MILLISECONDS);
+//    }
 
 }
